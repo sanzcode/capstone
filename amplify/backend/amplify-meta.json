@@ -1,0 +1,68 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-capstoneapp-dev-214123-authRole",
+      "UnauthRoleArn": "arn:aws:iam::585714118388:role/amplify-capstoneapp-dev-214123-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::585714118388:role/amplify-capstoneapp-dev-214123-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-capstoneapp-dev-214123-deployment",
+      "UnauthRoleName": "amplify-capstoneapp-dev-214123-unauthRole",
+      "StackName": "amplify-capstoneapp-dev-214123",
+      "StackId": "arn:aws:cloudformation:us-east-1:585714118388:stack/amplify-capstoneapp-dev-214123/ed352e40-080b-11eb-bba3-0e2470ba0d5b",
+      "AmplifyAppId": "d3i6wslob4d5vv"
+    }
+  },
+  "auth": {
+    "capstoneappae16b7d3": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-capstoneapp-dev-214123-deployment/amplify-cfn-templates/auth/capstoneappae16b7d3-cloudformation-template.yml",
+        "logicalId": "authcapstoneappae16b7d3"
+      },
+      "lastPushTimeStamp": "2020-10-07T16:24:30.071Z",
+      "output": {
+        "AppClientSecret": "omcgf99gmg37micdo7kaftm8r22u22npbo56tadcrq2euao7i56",
+        "UserPoolId": "us-east-1_PeCfUE4f9",
+        "AppClientIDWeb": "164irp3q7s3ifuulfrjblqlfgk",
+        "AppClientID": "9ls0am6s5f5qvj54131d3u51c",
+        "IdentityPoolId": "us-east-1:efe28350-7ce0-4d5a-b85d-c7e6aa25a0ab",
+        "IdentityPoolName": "capstoneappae16b7d3_identitypool_ae16b7d3__dev",
+        "UserPoolName": "capstoneappae16b7d3_userpool_ae16b7d3"
+      },
+      "lastPushDirHash": "o+fSlRvBHiYDE9EsOB0+ImjN/ww="
+    }
+  },
+  "hosting": {
+    "S3AndCloudFront": {
+      "service": "S3AndCloudFront",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-capstoneapp-dev-214123-deployment/amplify-cfn-templates/hosting/template.json",
+        "logicalId": "hostingS3AndCloudFront"
+      },
+      "lastPushTimeStamp": "2020-10-07T16:24:30.076Z",
+      "output": {
+        "S3BucketSecureURL": "https://capstone-group4-amazingbookingapp-dev.s3.amazonaws.com",
+        "WebsiteURL": "http://capstone-group4-amazingbookingapp-dev.s3-website-us-east-1.amazonaws.com",
+        "Region": "us-east-1",
+        "HostingBucketName": "capstone-group4-amazingbookingapp-dev"
+      },
+      "lastPushDirHash": "hHYbEtwrOdCkJsjWth3FKRq2Pn4="
+    },
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "providerPlugin": "awscloudformation",
+      "type": "manual",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-capstoneapp-dev-214123-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
+        "logicalId": "hostingamplifyhosting"
+      },
+      "lastPushTimeStamp": "2020-10-07T16:24:30.082Z",
+      "output": {},
+      "lastPushDirHash": "/+VZ33seFFqAr6wbtptwbINUfSA="
+    }
+  }
+}

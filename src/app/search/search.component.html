@@ -1,0 +1,179 @@
+<div style="padding: 24px;" >
+   <h2>Search Booking</h2>
+   <input type="search" id="site-search" aria-label="Search through site content"  [(ngModel)]="bookSearch">
+   <button (click)="SearchBooking()">Search</button>
+ </div>
+<div>
+  <!-- previous code -->
+  <div class="flight-engine">
+    <div class="container">
+       <div class="tabing">
+          <ul>
+             <li><a class="active" href="#1"><i class="fa fa-plane" aria-hidden="true"></i> Flight</a>
+             </li>
+          </ul>
+          <div class="tab-content">
+             <div id="1" class="tab1 active">
+                <div class="flight-tab row">
+                   <div class="persent-one">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <select required class="textboxstyle" placeholder="From City or airport" [(ngModel)]="orig">
+                        <option ngValue="" disabled selected>From City or airport</option>
+                        <option ngValue="Paris">Paris</option>
+                        <option ngValue="Berlin">Berlin</option>
+                        <option ngValue="Barcelona">Barcelona</option>
+                        <option ngValue="Zurich">Zurich</option>
+                        <option ngValue="London">London</option>
+                        <option ngValue="Rome">Rome</option>
+                        <option ngValue="Amsterdam">Amsterdam</option>
+                        <option ngValue="Prague">Prague</option>
+                        <option ngValue="Sydney">Sydney</option>
+                        <option ngValue="Dublin">Dublin</option>
+                      </select>
+                   </div>
+                   <div class="persent-one">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <select name="dest" id="dest" class="textboxstyle" placeholder="To City or airport" [(ngModel)]="dest">
+                        <option value="" disabled selected>To City or airport</option>
+                        <option ngValue="Paris">Paris</option>
+                        <option ngValue="Berlin">Berlin</option>
+                        <option ngValue="Barcelona">Barcelona</option>
+                        <option ngValue="Zurich">Zurich</option>
+                        <option ngValue="London">London</option>
+                        <option ngValue="Rome">Rome</option>
+                        <option ngValue="Amsterdam">Amsterdam</option>
+                        <option ngValue="Prague">Prague</option>
+                        <option ngValue="Sydney">Sydney</option>
+                        <option ngValue="Dublin">Dublin</option>
+                      </select>
+                   </div>
+                   <div class="persent-one less-per">
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      <input type="date"  class="textboxstyle" id="goDate" placeholder="Depart" required [(ngModel)]="goDate">
+                   </div>
+                   <div class="persent-one less-per">
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      <input type="date" class="textboxstyle" id="returnDate" placeholder="Returrn" required [(ngModel)]="returnDate">
+                   </div>
+                   <div class="persent-one">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      <input type="number" name="passenger" class="textboxstyle" id="passenger" name="name" placeholder=1 [(ngModel)]="passenger">
+                   </div>
+                   <div class="persent-one less-btn">
+                     <button type="button" class="btn btn-info cst-btn" (click)="getResults()">Search</button>
+                   </div>
+                </div>
+                <!-- flight tab -->
+             </div>
+       
+             <!-- tab 1 -->
+          </div>
+          </div>
+          <!-- tab content -->
+       </div>
+       <!-- tabbing -->
+    </div>
+    
+    <div style="padding-top:50px;">
+
+      <div *ngIf="payed" style="background-color:honeydew;">
+        <div class="main-div2">
+         <h2 style="text-align: center;">Your payment has been confirmed. Booking Number: {{bookPayed}} </h2>
+           <button style= "margin: 5px;" class="btn btn-info cst-btn" (click)="cancelBook()"> OK </button>
+         </div>
+      </div>
+
+      <div *ngIf="found" style="background-color:#0082B9CC;">
+         <div class="main-div2">
+            <h2 style="text-align: center; ">Booking</h2>
+          <table style="width:70%;    width: 50%; align-content: center;
+          text-align: center;
+          margin: auto;" class="styled-table" >
+              <tr>
+                <th>Booking Referenze</th>
+                <th>Origen</th>
+                <th>Destination</th> 
+                <th>Flight</th>
+                <th>Date Departure</th>
+                <th>Time</th>
+                <th>Date Return</th>
+                <th>Time</th>
+                <th>Price €</th>
+              </tr>
+              <tr>
+                <td>{{searchedBooking.BookRef}}</td>
+                <td>{{searchedBooking.Origin}}</td>
+                <td>{{searchedBooking.Destination}}</td>
+                <td>{{searchedBooking.FlightCode}}</td>
+                <td>{{searchedBooking.DeptDate}}</td>
+                <td>{{searchedBooking.DeptTime}}</td>
+                <td>{{searchedBooking.ReturnDate}}</td>
+                <td>{{searchedBooking.ReturnTime}}</td>
+                <td>{{searchedBooking.Price}}</td>
+              </tr>
+  
+            </table>
+            <button style= "margin: 5px;" class="btn btn-info cst-btn" (click)="confirmBook()"> OK </button>
+          </div>
+       </div>
+
+      <div *ngIf="pay" style="background-color:#ff9900;">
+        <div class="main-div2">
+         <h2 style="text-align: center;">Please confirm your payment</h2>
+         <table style="width:70%" style="text-align: center; margin: auto;" >
+             <tr>
+               <th>Origen</th>
+               <th>Destination</th> 
+               <th>Flight</th>
+               <th>Date Departure</th>
+               <th>Time</th>
+               <th>Date Return</th>
+               <th>Time</th>
+               <th>Price €</th>
+             </tr>
+             <tr>
+               <td>{{chosenBooking.Origin}}</td>
+               <td>{{chosenBooking.Destination}}</td>
+               <td>{{chosenBooking.FlightCode}}</td>
+               <td>{{chosenBooking.DeptDate}}</td>
+               <td>{{chosenBooking.DeptTime}}</td>
+               <td>{{chosenBooking.ReturnDate}}</td>
+               <td>{{chosenBooking.ReturnTime}}</td>
+               <td>{{chosenBooking.Price}}</td>
+             </tr>
+ 
+           </table>
+           <button style= "margin: 5px;" class="btn btn-info cst-btn" (click)="confirmBook()"> Pay </button>
+           <button style= "margin: 5px; margin-right: 40px;" class="btn btn-info cst-btn" (click)="cancelBook()">Cancel</button>
+   
+         </div>
+      </div>
+
+    <div class="main-div" *ngFor="let booking of bookings">
+
+      <table style="width:90%" >
+          <tr>
+            <th>Origen</th>
+            <th>Destination</th> 
+            <th>Flight</th>
+            <th>Date Departure</th>
+            <th>Time</th>
+            <th>Date Return</th>
+            <th>Time</th>
+            <th>Price €</th>
+          </tr>
+          <tr>
+            <td>{{booking.Origin}}</td>
+            <td>{{booking.Destination}}</td>
+            <td>{{booking.FlightCode}}</td>
+            <td>{{booking.DeptDate}}</td>
+            <td>{{booking.DeptTime}}</td>
+            <td>{{booking.ReturnDate}}</td>
+            <td>{{booking.ReturnTime}}</td>
+            <td>{{booking.Price}}</td>
+          </tr>
+        </table>
+        <button type="button" class="btn btn-info cst-btn" (click)="Book(booking.id)">Book!</button>
+   </div>
+
+</div>

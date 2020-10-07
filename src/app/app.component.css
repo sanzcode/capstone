@@ -1,0 +1,13 @@
+amplify-authenticator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  amplify-authenticator[_ngcontent-imq-c157] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: #FF9900;
+}
