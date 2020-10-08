@@ -1,3 +1,7 @@
+<div style="padding: 24px;">
+<img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png" width="30" height="35">
+<h2 style="display: inline-block; margin-left: 5px; color: black; text-align: left;" >Hello {{name}}!</h2>
+</div>
 <div style="padding: 24px;" >
    <h2>Search Booking</h2>
    <input type="search" id="site-search" aria-label="Search through site content"  [(ngModel)]="bookSearch">
@@ -113,7 +117,7 @@
               </tr>
   
             </table>
-            <button style= "margin: 5px;" class="btn btn-info cst-btn" (click)="confirmBook()"> OK </button>
+            <button style= "margin: 5px;" class="btn btn-info cst-btn" (click)="cancelBook()"> OK </button>
           </div>
        </div>
 

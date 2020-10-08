@@ -3,7 +3,7 @@ import { Booking } from '../model/booking.component';
 import { ApisService } from '../services/apis.service';
 import {NgbModal, ModalDismissReasons}  from '@ng-bootstrap/ng-bootstrap'; 
 import { HttpClient } from '@angular/common/http';
-
+import { Auth, Logger, Hub } from 'aws-amplify';
 
 @Component({
   selector: 'app-search',
@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit {
   passenger: number;
   Flights: string[]  =  ['AB', 'IB', 'BA', 'LX', 'RY', 'ES'];
   refBook: string[]  =  ['A4G65', '567GHH', '89KJH', '56FRD', '09LKIJ', '56SDR','HZGTF','09JUH','KLFDS'];
+  name: String = "d";
   
   chosenBooking: Booking;
   searchedBooking: Booking = new Booking;
@@ -37,7 +38,13 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.pay = false;
-  }
+    Auth.currentSession();
+    this.name = Auth.currentUserInfo.name;
+    console.log("Username");
+    Auth.currentUserInfo().then(user => {
+      this.name = user.username; //user.attributes.email_verified
+      console.log("Username");});
+    }
 
   public  getResults(): void {
     this.found = false;
@@ -106,7 +113,7 @@ export class SearchComponent implements OnInit {
   } 
 //    this.found = YHKIOP;
   SearchBooking(): void{
-    console.log("Here we go");
+    this.payed = false;
     this.searchedBooking.BookRef = this.bookSearch;
 
     this.http.get<any>('https://o0feonpvc0.execute-api.eu-west-1.amazonaws.com/dev/bookings/'+this.bookSearch).subscribe({
@@ -126,6 +133,7 @@ export class SearchComponent implements OnInit {
           this.searchedBooking.ReturnTime = data.returnTime;
           this.searchedBooking.id = data.ID;
           this.found = true;
+          this.payed = false;
         }else{
           alert("Booking number not found");
         } },
@@ -133,4 +141,5 @@ export class SearchComponent implements OnInit {
           console.error('There was an error!', error);
           alert("Booking number not found");
       }})
+      this.payed = false;
 }}

@@ -17,32 +17,33 @@ export class AppComponent implements OnInit {
   ) {
   }
 
+  listener: any;
+  self: any;
   title = 'capstone-app';
   authenticated: boolean = false;
-  name: String = "Juan";
   
   bookings: Booking[];
 
   ngOnInit() {
-    Auth.currentSession()
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
     this.authenticated = false;
     const logger = new Logger('Logger', 'INFO');
-    const listener = (data) => {
+    this.self = this;
+    this.listener = (data, self = this.self) => {
       switch (data.payload.event) {
         case 'signIn':
           logger.info('user signed in');
-          this.authenticated = true;
           break;
         case 'signUp':
           logger.info('user signed up');
+   
           break;
         case 'signOut':
           logger.info('user signed out');
+
           break;
         case 'signIn_failure':
           logger.info('user sign in failed');
+
           break;
         case 'configured':
           logger.info('the Auth module is configured');
@@ -52,9 +53,19 @@ export class AppComponent implements OnInit {
       }
     }
 
-    Hub.listen('auth', listener);
+    Hub.listen('auth', this.listener);
 
   }
+
+  private getDismissReason(reason: any): string { 
+    if (reason === ModalDismissReasons.ESC) { 
+      return 'by pressing ESC'; 
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) { 
+      return 'by clicking on a backdrop'; 
+    } else { 
+      return `with: ${reason}`; 
+    } 
+  } 
 
   ngOnLoad() {
     Auth.currentSession()
@@ -68,11 +79,14 @@ export class AppComponent implements OnInit {
   }
 
   CheckAuth(): void{
-    Auth.currentSession();
-    this.authenticated = true;
-    this.name = Auth.currentUserInfo.name;
-    console.log("Hello");
-    console.log(Auth.currentUserInfo.name);
+    const self = this;
+    Auth.currentSession()
+    .then(data =>
+      self.authenticated = true
+    )
+    .catch(err => 
+      alert("Please Login")
+      );
   }
   Signout(): void{
     this.authenticated = false;

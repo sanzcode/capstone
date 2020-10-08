@@ -4,13 +4,14 @@
   </div>
 </amplify-authenticator>
 
-<div *ngIf="!authenticated" style=" padding-top: 5%; text-align: center;">
-<h1>Welcome to Book your Flight </h1>
-<br>
-<button type="button" class="btn btn-info cst-btn" (click)="CheckAuth()">Start Booking!</button>
+<div *ngIf="!authenticated" style=" padding-top: 5%; text-align: center;"> 
+<h1>Welcome to Awesome Booking - Team 4</h1>
+<div>
+  <button type="button" class="btn btn-info cst-btn" style="margin-top: 20px;" (click)="CheckAuth()">Start Booking!</button>
+</div>
+<img src="../assets/1.png" width="200" >
 </div>
 
 <div *ngIf="authenticated">
-  <h2 style="padding: 24px; color: black; text-align: left;" >Welcome back {{name}} !!</h2>
   <app-search></app-search>
 </div>
